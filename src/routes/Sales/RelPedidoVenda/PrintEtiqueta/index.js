@@ -335,14 +335,39 @@ export class PrintComponent extends React.Component {
                     </Row>
                   </Col>
                   <Col span={8}>
-                    <p
+                    <Row
                       style={{
-                        fontSize: "35px",
-                        paddingLeft: "24px"
+                        height: "50%",
+                        paddingTop: "26px",
+                        flexDirection: "row-reverse",
+                        alignItems: "flex-end"
                       }}
                     >
-                      Qtd
-                    </p>
+                      <p
+                        style={{
+                          fontSize: "35px",
+                          paddingRight: "24px"
+                        }}
+                      >
+                        Qtd.
+                      </p>
+                    </Row>
+                    <Row
+                      style={{
+                        height: "50%",
+                        flexDirection: "row-reverse",
+                        alignItems: "center"
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontSize: "35px",
+                          paddingRight: "24px"
+                        }}
+                      >
+                        1,00
+                      </p>
+                    </Row>
                   </Col>
                 </Row>
               </Col>
