@@ -85,7 +85,9 @@ export class PrintComponent extends React.Component {
               <Row
                 style={{
                   height: "100%",
-                  padding: "1%"
+                  padding: "1%",
+                  fontWeight: "bold",
+                  color: "#000"
                 }}
               >
                 <Col span={24}>
@@ -242,7 +244,7 @@ export class PrintComponent extends React.Component {
                               <Barcode
                                 width={3}
                                 margin={0}
-                                height={30}
+                                height={20}
                                 displayValue={false}
                                 value={barcodeString}
                               ></Barcode>
