@@ -39,15 +39,16 @@ class PrintReport extends Component {
 export default PrintReport;
 
 export class PrintComponent extends React.Component {
-
   getBarcode1 = data => {
     console.log(data);
     let stringFormat;
 
-    stringFormat = `0101${('00000' + data.num_salesorder).slice(-6)}${('000' + data.sequencia).slice(-4)}`
+    stringFormat = `0101${("00000" + data.num_salesorder).slice(-6)}${(
+      "000" + data.sequencia
+    ).slice(-4)}`;
 
-    return stringFormat
-  }
+    return stringFormat;
+  };
 
   render() {
     const { data } = this.props;
@@ -75,11 +76,11 @@ export class PrintComponent extends React.Component {
           </div>
 */}
 
-        {data.map((pdvenda,index) => {
-          console.log(pdvenda)
-          
+        {data.map((pdvenda, index) => {
+          console.log(pdvenda);
+
           return data[index].linhas.map(linha => {
-            barcodeString = this.getBarcode1(linha)
+            barcodeString = this.getBarcode1(linha);
             return (
               <Row
                 style={{
@@ -91,7 +92,7 @@ export class PrintComponent extends React.Component {
                   <Row
                     style={{
                       height: "40%",
-  
+
                       borderLeft: "1px solid #000"
                     }}
                   >
@@ -99,7 +100,7 @@ export class PrintComponent extends React.Component {
                       style={{
                         borderTop: "1px solid #000",
                         borderRight: "1px solid #000",
-  
+
                         borderLeft: "1px solid #000"
                       }}
                       span={8}
@@ -115,14 +116,17 @@ export class PrintComponent extends React.Component {
                               alignItems: "center",
                               justifyContent: "center",
                               height: "100%",
-                              padding: "12px"
+                              padding: "5px"
                             }}
                           >
-                            <img src={LogoKnap}></img>
+                            <img
+                              style={{ width: "100%", height: "100%" }}
+                              src={LogoKnap}
+                            ></img>
                           </Row>
                         </Col>
                       </Row>
-  
+
                       <Row
                         style={{
                           height: "50%",
@@ -132,8 +136,8 @@ export class PrintComponent extends React.Component {
                         <Col span={24}>
                           <p
                             style={{
-                              fontSize: "35px",
-                              paddingLeft: "12px"
+                              fontSize: "15px",
+                              paddingLeft: "1px"
                             }}
                           >
                             End:
@@ -147,7 +151,7 @@ export class PrintComponent extends React.Component {
                           height: "30%",
                           borderTop: "1px solid #000",
                           borderRight: "1px solid #000",
-  
+
                           borderBottom: "1px solid #000",
                           borderLeft: "1px solid #000"
                         }}
@@ -161,9 +165,9 @@ export class PrintComponent extends React.Component {
                           >
                             <p
                               style={{
-                                fontSize: "35px",
-                                paddingLeft: "12px",
-                                paddingTop: "18px"
+                                fontSize: "15px",
+                                paddingLeft: "6px",
+                                paddingTop: "5px"
                               }}
                             >
                               Projeto: {linha.CodProjeto} {linha.DescProjeto}
@@ -175,7 +179,7 @@ export class PrintComponent extends React.Component {
                         style={{
                           height: "70%",
                           borderRight: "1px solid #000",
-  
+
                           borderLeft: "1px solid #000"
                         }}
                       >
@@ -184,9 +188,8 @@ export class PrintComponent extends React.Component {
                             <Col span={10}>
                               <p
                                 style={{
-                                  fontSize: "35px",
-                                  paddingLeft: "6px",
-                                  paddingTop: "18px"
+                                  fontSize: "15px",
+                                  paddingTop: "5px"
                                 }}
                               >
                                 Ord. Compra:
@@ -202,27 +205,27 @@ export class PrintComponent extends React.Component {
                               >
                                 <p
                                   style={{
-                                    fontSize: "35px",
-  
-                                    paddingTop: "18px"
+                                    fontSize: "15px",
+
+                                    paddingTop: "5px"
                                   }}
                                 >
                                   {pdvenda.id}
                                 </p>
                                 <p
                                   style={{
-                                    fontSize: "35px",
-  
-                                    paddingTop: "18px"
+                                    fontSize: "15px",
+
+                                    paddingTop: "5px"
                                   }}
                                 >
                                   Seq.:
                                 </p>
                                 <p
                                   style={{
-                                    fontSize: "35px",
-  
-                                    paddingTop: "18px"
+                                    fontSize: "15px",
+
+                                    paddingTop: "5px"
                                   }}
                                 >
                                   {linha.sequencia}
@@ -239,8 +242,8 @@ export class PrintComponent extends React.Component {
                               <Barcode
                                 width={3}
                                 margin={0}
+                                height={30}
                                 displayValue={false}
-                                height={"80%"}
                                 value={barcodeString}
                               ></Barcode>
                             </Col>
@@ -261,29 +264,29 @@ export class PrintComponent extends React.Component {
                       <Row>
                         <p
                           style={{
-                            fontSize: "35px",
-                            paddingLeft: "24px",
-  
-                            paddingTop: "24px"
+                            fontSize: "15px",
+                            paddingLeft: "5px",
+
+                            paddingTop: "5px"
                           }}
                         >
                           Produto:
                         </p>
                         <p
                           style={{
-                            paddingTop: "12px",
-                            fontSize: "46px",
-                            paddingLeft: "64px"
+                            paddingTop: "4px",
+                            fontSize: "18px",
+                            paddingLeft: "20px"
                           }}
                         >
-                          {linha.produto_cliente }
+                          {linha.produto_cliente}
                         </p>
                       </Row>
                       <Row>
                         <p
                           style={{
-                            fontSize: "35px",
-                            paddingLeft: "24px"
+                            fontSize: "15px",
+                            paddingLeft: "5px"
                           }}
                         >
                           {linha.DescProdutoCliente}
@@ -292,16 +295,14 @@ export class PrintComponent extends React.Component {
                       <Row>
                         <p
                           style={{
-                            fontSize: "35px",
-                            paddingLeft: "24px"
+                            fontSize: "15px",
+                            paddingLeft: "5px"
                           }}
-                        >
-                          
-                        </p>
+                        ></p>
                       </Row>
                     </Col>
                   </Row>
-  
+
                   <Row
                     style={{
                       height: "20%",
@@ -321,14 +322,14 @@ export class PrintComponent extends React.Component {
                         style={{
                           alignItems: "center",
                           height: "100%",
-                          paddingLeft: "48px"
+                          paddingLeft: "12px"
                         }}
                       >
                         <Barcode
                           width={3}
                           margin={0}
                           displayValue={false}
-                          height={"100%"}
+                          height={30}
                           value={linha.produto_cliente}
                         ></Barcode>
                       </Row>
@@ -337,14 +338,14 @@ export class PrintComponent extends React.Component {
                       <Row
                         style={{
                           height: "50%",
-                          paddingTop: "26px",
+                          paddingTop: "5px",
                           flexDirection: "row-reverse",
                           alignItems: "flex-end"
                         }}
                       >
                         <p
                           style={{
-                            fontSize: "35px",
+                            fontSize: "15px",
                             paddingRight: "24px"
                           }}
                         >
@@ -360,7 +361,7 @@ export class PrintComponent extends React.Component {
                       >
                         <p
                           style={{
-                            fontSize: "35px",
+                            fontSize: "15px",
                             paddingRight: "24px"
                           }}
                         >
@@ -372,8 +373,7 @@ export class PrintComponent extends React.Component {
                 </Col>
               </Row>
             );
-          })
-         
+          });
         })}
       </div>
     );
