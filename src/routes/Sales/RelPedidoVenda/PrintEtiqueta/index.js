@@ -322,7 +322,8 @@ export class PrintComponent extends React.Component {
                         style={{
                           alignItems: "center",
                           height: "100%",
-                          paddingLeft: "12px"
+                          paddingLeft: "12px",
+                          paddingRight: "12px"
                         }}
                       >
                         <Barcode
