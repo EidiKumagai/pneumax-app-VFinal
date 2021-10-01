@@ -76,7 +76,7 @@ class HorizontalNav extends Component {
         selectedKeys={[selectedKeys]}
         mode="horizontal"
       >
-        {usuario.role === 'admin' ? (
+        {usuario ? (
           <SubMenu
             key="administrator"
             className="gx-menu-horizontal"

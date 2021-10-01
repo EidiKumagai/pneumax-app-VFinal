@@ -96,6 +96,9 @@ export class PrintComponent extends React.Component {
 
         {
           data.map(pdvenda => {
+            pdvenda.linhas.sort(function(a, b) {
+              return a.sequencia - b.sequencia; 
+            });
             return (
               <Fragment>
 

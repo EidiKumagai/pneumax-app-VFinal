@@ -139,7 +139,7 @@ const App = ({ match }) => {
           path={`${match.url}commondata/estabelecimento`}
           component={Estabelecimento}
         />
-        {data.role === 'admin' ? (
+        {data ? (
           <Route path={`${match.url}administrator`} component={Administrator} />
         ) : (
           // <Route path={`${match.url}administrator/matrizCalculoCilindro`} component={MatrizCalculoCilindro}/>
