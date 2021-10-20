@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Row, Checkbox, Card, Layout } from 'antd';
 import api from 'util/ApiCors';
+//import api2 from 'util/ApiCors'
 import Auxiliary from 'util/Auxiliary';
 import NextOrders from 'components/dashboard/Crypto/NextOrders';
 import MaquinaDetail from 'components/dashboard/MaquinaDetail';
@@ -74,7 +75,7 @@ class DashboardV3 extends React.Component {
       .then((result) => {
         let dataDash = [];
 
-        dataDash = result.data;
+        dataDash = result.data.data;
 
         this.setState({
           listOfDashboards: dataDash,
@@ -93,52 +94,55 @@ class DashboardV3 extends React.Component {
       });
 
       console.log(dash);
-      await api
-        .get(`/dashboard/returnOrderProdMaquina/${dash}`)
-        .then((result) => {
-          let dataDash = [];
-          dataDash = result.data;
-          // console.log(result);
-          let filtered = _.filter(dataDash, (o) => {
-            if (o.orderProd !== null) {
-              return (
-                o.orderProd.status === 'liberada' ||
-                o.orderProd.status === 'execução'
-              );
-            }
-          });
-          let execucao = [];
-          execucao = filtered.filter(
-            (item) =>
-              item.orderProd.status === 'execução' ||
-              item.statusEtapa === 'execução'
-          );
+      // await api
+      //   .get(`/dashboard/returnOrderProdMaquina/${dash}`)
+      //   .then((result) => {
+      //     let dataDash = [];
+      //     dataDash = result.data;
+      //     // console.log(result);
+      //     // let filtered = _.filter(dataDash, (o) => {
+      //     //   if (o.orderProdObj !== null) {
+      //     //     return (
+      //     //       o.orderProdObj.status === 'liberada' ||
+      //     //       o.orderProdObj.status === 'execução'
+      //     //     );
+      //     //   }
+      //     // });
+      //     // let execucao = [];
+      //     // execucao = filtered.filter(
+      //     //   (item) =>
+      //     //     item.orderProdObj.status === 'execução' ||
+      //     //     item.statusEtapa === 'execução'
+      //     // );
 
-          // execucao.forEach(item => {
-          //   item.tempo = setInterval(() => {
-          //     const tempoRodando = moment(moment().diff(inicio)).utc().format("HH:mm:ss");
-          //     let t = tempoRodando;
-          //     // console.log(t);
-          //     this.setState({tempoRodando: t});
-          //   }, 1000);;
-          // });
+      //     // execucao.forEach(item => {
+      //     //   item.tempo = setInterval(() => {
+      //     //     const tempoRodando = moment(moment().diff(inicio)).utc().format("HH:mm:ss");
+      //     //     let t = tempoRodando;
+      //     //     // console.log(t);
+      //     //     this.setState({tempoRodando: t});
+      //     //   }, 1000);;
+      //     // });
 
            
-          console.log(execucao);
-          this.setState({
-            listofMaquinasOfOrderProd: filtered,
-            machinesExecution: execucao,
-            machinesFreedom: filtered.filter(
-              (item) => item.statusEtapa === 'liberada'
-            ),
-          });
-          console.log(execucao, filtered);
+      //     // console.log(execucao);
+      //     // this.setState({
+      //     //   listofMaquinasOfOrderProd: filtered,
+      //     //   machinesExecution: execucao,
+      //     //   machinesFreedom: filtered.filter(
+      //     //     (item) => item.statusEtapa === 'liberada'
+      //     //   ),
+      //     // });
 
-          this.forceUpdate();
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      //     this.setState({
+            
+      //     })
+
+      //     this.forceUpdate();
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
       this.showDash(this.state.checkeds);
     }
   };
@@ -291,6 +295,9 @@ class DashboardV3 extends React.Component {
     // let machinesExecution = this.state.machinesExecution;
     // machinesExecution = machinesExecution.slice(0,4);
 
+
+    console.log(machinesFreedom);
+
     let nextOrders = [];
     machinesFreedom.forEach((item) => {
       if (
@@ -413,7 +420,7 @@ class DashboardV3 extends React.Component {
                   </Row>
                 </Col>
                 <Col span={11}>
-                  {listofMaquinasOfOrderProd.length === 0 ? (
+                  {machinesFreedom.length === 0 ? (
                     ''
                   ) : (
                     <NextOrders

@@ -88,6 +88,13 @@ const App = ({ match }) => {
         />
 
         <Route
+          path={`${match.url}production/gerenPrioridade`}
+          component={asyncComponent(() =>
+            import('../routes/production/ManagementPriority/index')
+          )}
+        />
+
+        <Route
           path={`${match.url}Sales/FollowUp`}
           component={asyncComponent(() =>
             import('../routes/Sales/FollowUp/index')

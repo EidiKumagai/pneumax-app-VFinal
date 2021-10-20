@@ -59,6 +59,25 @@ class ImportOrdersFox extends Component {
         this.setState({filtros});
     }
 
+    handleChange2 = name => value => {
+        let filtros = this.state.filtros;
+
+        if(typeof(value) === "object") {
+            if(name === 'dataInicioM' || name === 'dataFimM') {
+                if(value){
+                    filtros[name] = value.format('YYYY-MM-DD');
+                }
+            }else {
+                filtros[name] = value.target.value;
+            }
+        }else {
+            filtros[name] = value;
+        }
+
+        this.setState({filtros});
+    }
+
+
     onChangePage = (page, pageSize) => {
         console.log(page, pageSize);
     }
@@ -266,7 +285,8 @@ class ImportOrdersFox extends Component {
             <Row>
                 <Col lg={20} md={20} sm={24} xs={24}>
                     <ImportOrdersFoxForm 
-                        handleChange={this.handleChange} 
+                        handleChange={this.handleChange}
+                        handleChange2={this.handleChange2}
                         filtros={this.state.filtros} 
                         onKeyDown={this.onKeyDown}
                     />

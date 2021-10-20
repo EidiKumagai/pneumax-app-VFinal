@@ -4,7 +4,8 @@ import {Card,
         Input, 
         Row, 
         Col, 
-        DatePicker
+        DatePicker,
+        Select
     } from 'antd';
 // import locale from 'moment/locale/pt-br';
 // import moment from 'moment';
@@ -15,35 +16,40 @@ import {Card,
 export default class ImportOrdersFoxForm extends Component {
 
     render () {
+        const { listOfMaquinas } = this.props;
         return(
             <Row>
                 <Col span={24}>
-                    <Card type="inner" title="Gerar Ordem de Produção de Pedido de  Venda">
+                    <Card type="inner" title="Gerenciamento de Prioridades">
                         <Form layout="horizontal" size="small">
                             <Row>
 
                             <Col lg={4} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
-                                    <Form.Item label="Data inicio">
-                                        <DatePicker 
-                                            // value={this.state.dataEntrega}
-                                            // locale={locale}
-                                            format={"DD-MM-YYYY"} 
-                                            onChange={this.props.handleChange('dataInicio')} 
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </Col>
-
-                            <Col lg={4} md={6} sm={12} xs={24}>
-                                <div className="gx-form-row0">
-                                    <Form.Item label="Data Fim">
-                                        <DatePicker 
-                                            // value={this.state.dataEntrega}
-                                            // locale={locale}
-                                            format={"DD-MM-YYYY"} 
-                                            onChange={this.props.handleChange('dataFim')} 
-                                        />
+                                    <Form.Item label="Maquinas">
+                                    <Select
+                                        style={{ width: 400 }}
+                                        showSearch
+                                        placeholder="Filtrar por maquina"
+                                        onChange={this.props.handleMaquina}
+                                        filterOption={(inputValue, option) =>
+                                            option.props.children[0]
+                                            .concat(
+                                                option.props.children[1],
+                                                option.props.children[2]
+                                            )
+                                            .toUpperCase()
+                                            .indexOf(inputValue.toUpperCase()) !== -1
+                                        }
+                                        >
+                                        {listOfMaquinas.map((e) => {
+                                            return (
+                                            <Select.Option value={e.cod}>
+                                                {e.cod}-{e.name}
+                                            </Select.Option>
+                                            );
+                                        })}
+                                    </Select>
                                     </Form.Item>
                                 </div>
                             </Col>
@@ -59,11 +65,11 @@ export default class ImportOrdersFoxForm extends Component {
                                         />
                                     </Form.Item>
                                 </div>
-                            </Col> */}
+                            </Col>
 
                             <Col lg={4} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
-                                    <Form.Item label="Pedido Cliente">
+                                    <Form.Item label="ID Pedido Venda">
                                         <Input 
                                             type="number"
                                             // style={{ width: 120 }}  
@@ -90,6 +96,20 @@ export default class ImportOrdersFoxForm extends Component {
                                     </Form.Item>
                                 </div>
                             </Col>
+                            <Col lg={4} md={6} sm={12} xs={24}>
+                                <div className="gx-form-row0">
+                                    <Form.Item label="Pedido Cliente" >
+                                        <Input 
+                                            type="text" 
+                                            // style={{ width: 120 }}
+                                            value={this.props.filtros.pedido_cliente}
+                                            name="pedido_cliente"
+                                            onChange={this.props.handleChange('pedido_cliente')}
+                                            onKeyDown={this.props.onKeyDown}
+                                        />
+                                    </Form.Item>
+                                </div>
+                            </Col> */}
 
                             {/* <Col lg={4} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
@@ -123,6 +143,22 @@ export default class ImportOrdersFoxForm extends Component {
                                 </div>
                             </Col> */}
 
+                            {/* <Col lg={4} md={6} sm={12} xs={24}>
+                                <div className="gx-form-row0">
+                                    <Form.Item label="Cliente" >
+                                        <Input 
+                                            type="text" 
+                                            // style={{ width: 120 }}
+                                            // value={orderPro.pedidoCliente}
+                                            value={this.props.filtros.cliente}
+                                            name="cliente"
+                                            onChange={this.props.handleChange('cliente')}
+                                            onKeyDown={this.props.onKeyDown}
+                                        />
+                                    </Form.Item>
+                                </div>
+                            </Col>
+
                             <Col lg={4} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
                                     <Form.Item label="Status" >
@@ -138,6 +174,22 @@ export default class ImportOrdersFoxForm extends Component {
                                     </Form.Item>
                                 </div>
                             </Col>
+
+                            <Col lg={4} md={6} sm={12} xs={24}>
+                                <div className="gx-form-row0">
+                                    <Form.Item label="Tipo registro" >
+                                        <Input 
+                                            type="text" 
+                                            // style={{ width: 120 }}
+                                            // value={orderPro.pedidoCliente}
+                                            value={this.props.filtros.tipo_registro}
+                                            name="tipo_registro"
+                                            onChange={this.props.handleChange('tipo_registro')}
+                                            onKeyDown={this.props.onKeyDown}
+                                        />
+                                    </Form.Item>
+                                </div>
+                            </Col> */}
 
                             </Row>
                         </Form>

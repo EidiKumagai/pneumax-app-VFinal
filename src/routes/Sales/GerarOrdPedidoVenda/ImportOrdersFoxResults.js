@@ -17,26 +17,17 @@ const columns = [
     align: 'center'
   },
   {
-    title: 'Pedido Cliente',
-    dataIndex: 'pedido_cliente',
-    // key:'Pedido do Cliente'
-  },
-  {
-    title: 'Pedido Fox',
-    dataIndex: 'pedido_fox',
-    // key:'Pedido do Cliente'
-  },
-  {
-    title: 'Data Entrega',
-    dataIndex: 'data_entrega',
+    title: 'Data do Pedido',
+    dataIndex: 'orddat',
+    align: 'center',
     //  key:'Emissão',
     render: (text) => moment(text).format('DD-MM-YYYY'),
   },
   {
-    title: 'Data Prevista',
-    dataIndex: 'data_prevista',
-    //  key:'Emissão',
-    render: (text) => moment(text).format('DD-MM-YYYY'),
+    title: 'Status',
+    dataIndex: 'status',
+    align: 'center',
+    // key:'Pedido do Cliente'
   },
   {
     title: 'Cliente',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Board from 'react-trello';
-import api from 'util/Api';
+import api from 'util/ApiAdonis';
 import randomColor from 'randomcolor';
 import { Form, Select, Spin, message, Button, Row, Col } from 'antd';
 class GerenciamentoPrioridades extends Component {
@@ -111,16 +111,17 @@ class GerenciamentoPrioridades extends Component {
           },
         ],
       },
+      contador: 1
     };
     this.resetData();
   }
 
   getMaquinas = () => {
     api
-      .get(`MachineLabor/?sort=cod&limit=999`, {})
+      .get(`MachineLabor/`, {})
       .then((result) => {
         let dataMaq = [];
-        dataMaq = result.data;
+        dataMaq = result.data.data;
 
         let taxMaquinas = dataMaq.filter((o) => {
           return o.type === 'maquina' || o.type === 'montagem';
@@ -189,23 +190,27 @@ class GerenciamentoPrioridades extends Component {
     this.getPrioridades('');
   }
 
-  getPrioridades = async (idMaquina) => {
+  getPrioridades = async (idMaquina, offset) => {
     this.resetData();
     if (!idMaquina || idMaquina === '') {
       this.setState({ loading: false });
       return null;
     } else {
-      const dataFromServer = await this.getDataFromServer(idMaquina);
+      const dataFromServer = await this.getDataFromServer(idMaquina, offset);
       await this.setState({ originalData: dataFromServer });
       this.addCardsOnBorder(dataFromServer);
       this.setState({ loading: false });
     }
   };
 
-  getDataFromServer = async (idMaquina) => {
+  getDataFromServer = async (idMaquina,offset) => {
     let dataToReturn = {};
+
+    const params = {
+      offset
+    }
     await api
-      .get(`/prioridade?idMaquina=${idMaquina}`)
+      .get(`/prioridade?idMaquina=${idMaquina}`, {params})
       .then((result) => {
         dataToReturn = result.data;
       })
@@ -394,12 +399,35 @@ Data Entrega: ${opm.dataEntrega}`,
   handleMaquina = (selected) => {
     this.resetData();
     this.setState({ idMaquina: selected });
-    this.getPrioridades(selected);
+    this.getPrioridades(selected, 10);
   };
+
+
+  
   handleClearMaquina = () => {
     this.resetData();
-    this.getPrioridades('');
+    this.getPrioridades('',0);
   };
+
+  laneScroll = (requestedPage, laneId) => {
+    let aux
+    const idmaquina = this.state.idMaquina;
+    let contador = this.state.contador;
+    if(contador === 1){
+      aux = contador * 10
+      this.setState({
+        contador: contador + 1
+      }) 
+    }else{
+      this.setState({
+        contador: contador + 1
+      })
+      aux = contador * 10
+    }
+     
+      return this.getPrioridades(idmaquina, requestedPage * aux)
+    
+  }
 
   render() {
     const { data, listOfMaquinas } = this.state;
@@ -448,6 +476,7 @@ Data Entrega: ${opm.dataEntrega}`,
             </Col>
           </Row>
           <Board
+            
             data={data}
             hideCardDeleteIcon
             handleDragEnd={this.handleDragEnd}
@@ -458,6 +487,7 @@ Data Entrega: ${opm.dataEntrega}`,
             onCardMoveAcrossLanes={this.handleOnCardMove}
             laneDraggable={false}
             onCardClick={this.handleOnCardClick}
+            onLaneScroll={this.laneScroll}
           />
         </Spin>
       </div>

@@ -1,19 +1,20 @@
 import { Table } from 'antd';
 import React, { Fragment } from 'react';
+import moment from 'moment';
 
 const column = [
 
   {
     title: 'Data de registro',
-    dataIndex: 'created_at',
-    key: 'created_at',
+    dataIndex: 'orddat',
+    key: 'orddat',
     width: 100,
 
-    render: (created_at) => {
+    render: (orddat) => {
 
-      if (created_at) {
+      if (orddat) {
         return (
-          <Fragment >{created_at}</Fragment>
+          <Fragment >{moment(orddat).format('DD-MM-YYYY')}</Fragment>
         )
       }
       return <Fragment />
@@ -35,14 +36,6 @@ const column = [
     key: 'pedido_fox',
     width: 100,
   },
-
-  {
-    title: 'Pedido cliente',
-    dataIndex: 'pedido_cliente',
-    key: 'pedido_cliente',
-    width: 100,
-  },
-
   {
     title: 'Cliente',
     dataIndex: 'partner',
@@ -64,14 +57,6 @@ const column = [
     key: 'status',
     width: 100,
   },
-
-  {
-    title: 'Tipo de registro',
-    dataIndex: 'tipo_registro',
-    key: 'tipo_registro',
-    width: 100,
-  },
-
 ]
 
 

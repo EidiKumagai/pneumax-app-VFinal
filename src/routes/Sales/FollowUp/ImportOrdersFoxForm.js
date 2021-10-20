@@ -22,14 +22,53 @@ export default class ImportOrdersFoxForm extends Component {
                         <Form layout="horizontal" size="small">
                             <Row>
 
-                            <Col lg={4} md={6} sm={12} xs={24}>
+                            <Col lg={3} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
-                                    <Form.Item label="Data inicial">
+                                    <Form.Item label="Data Entrega inicial">
                                         <DatePicker 
                                             // value={this.state.dataEntrega}
                                             // locale={locale}
                                             format={"DD-MM-YYYY"} 
                                             onChange={this.props.handleChange('dataInicio')} 
+                                        />
+                                    </Form.Item>
+                                </div>
+                            </Col>
+
+                            <Col lg={3} md={6} sm={12} xs={24}>
+                                <div className="gx-form-row0">
+                                    <Form.Item label="Data Entrega Final">
+                                        <DatePicker 
+                                            // value={this.state.dataEntrega}
+                                            // locale={locale}
+                                            format={"DD-MM-YYYY"} 
+                                            onChange={this.props.handleChange('dataFim')} 
+                                        />
+                                    </Form.Item>
+                                </div>
+                            </Col>
+
+                            <Col lg={3} md={6} sm={12} xs={24}>
+                                <div className="gx-form-row0">
+                                    <Form.Item label="Data Prevista inicial">
+                                        <DatePicker 
+                                            // value={this.state.dataEntrega}
+                                            // locale={locale}
+                                            format={"DD-MM-YYYY"} 
+                                            onChange={this.props.handleChange2('dataInicioM')} 
+                                        />
+                                    </Form.Item>
+                                </div>
+                            </Col>
+
+                            <Col lg={3} md={6} sm={12} xs={24}>
+                                <div className="gx-form-row0">
+                                    <Form.Item label="Data Prevista Final">
+                                        <DatePicker 
+                                            // value={this.state.dataEntrega}
+                                            // locale={locale}
+                                            format={"DD-MM-YYYY"} 
+                                            onChange={this.props.handleChange2('dataFimM')} 
                                         />
                                     </Form.Item>
                                 </div>
@@ -48,9 +87,9 @@ export default class ImportOrdersFoxForm extends Component {
                                 </div>
                             </Col> */}
 
-                            <Col lg={4} md={6} sm={12} xs={24}>
+                            <Col lg={3} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
-                                    <Form.Item label="ID Pedido Venda">
+                                    <Form.Item label="Pedido Cliente">
                                         <Input 
                                             type="number"
                                             // style={{ width: 120 }}  
@@ -62,8 +101,7 @@ export default class ImportOrdersFoxForm extends Component {
                                     </Form.Item>
                                 </div>
                             </Col>
-
-                            <Col lg={4} md={6} sm={12} xs={24}>
+                            <Col lg={3} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
                                     <Form.Item label="Pedido Fox">
                                         <Input 
@@ -77,21 +115,6 @@ export default class ImportOrdersFoxForm extends Component {
                                     </Form.Item>
                                 </div>
                             </Col>
-                            <Col lg={4} md={6} sm={12} xs={24}>
-                                <div className="gx-form-row0">
-                                    <Form.Item label="Pedido Cliente" >
-                                        <Input 
-                                            type="text" 
-                                            // style={{ width: 120 }}
-                                            value={this.props.filtros.pedido_cliente}
-                                            name="pedido_cliente"
-                                            onChange={this.props.handleChange('pedido_cliente')}
-                                            onKeyDown={this.props.onKeyDown}
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </Col>
-
                             {/* <Col lg={4} md={6} sm={12} xs={24}>
                                 <div className="gx-form-row0">
                                     <Form.Item label="Codigo produto" >
@@ -123,54 +146,6 @@ export default class ImportOrdersFoxForm extends Component {
                                     </Form.Item>
                                 </div>
                             </Col> */}
-
-                            <Col lg={4} md={6} sm={12} xs={24}>
-                                <div className="gx-form-row0">
-                                    <Form.Item label="Cliente" >
-                                        <Input 
-                                            type="text" 
-                                            // style={{ width: 120 }}
-                                            // value={orderPro.pedidoCliente}
-                                            value={this.props.filtros.cliente}
-                                            name="cliente"
-                                            onChange={this.props.handleChange('cliente')}
-                                            onKeyDown={this.props.onKeyDown}
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </Col>
-
-                            <Col lg={4} md={6} sm={12} xs={24}>
-                                <div className="gx-form-row0">
-                                    <Form.Item label="Status" >
-                                        <Input 
-                                            type="text" 
-                                            // style={{ width: 120 }}
-                                            // value={orderPro.pedidoCliente}
-                                            value={this.props.filtros.status}
-                                            name="status"
-                                            onChange={this.props.handleChange('status')}
-                                            onKeyDown={this.props.onKeyDown}
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </Col>
-
-                            <Col lg={4} md={6} sm={12} xs={24}>
-                                <div className="gx-form-row0">
-                                    <Form.Item label="Tipo registro" >
-                                        <Input 
-                                            type="text" 
-                                            // style={{ width: 120 }}
-                                            // value={orderPro.pedidoCliente}
-                                            value={this.props.filtros.tipo_registro}
-                                            name="tipo_registro"
-                                            onChange={this.props.handleChange('tipo_registro')}
-                                            onKeyDown={this.props.onKeyDown}
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </Col>
 
                             </Row>
                         </Form>

@@ -223,6 +223,12 @@ class HorizontalNav extends Component {
             </Link>
           </Menu.Item>
 
+          <Menu.Item key="gerenPrioridades">
+            <Link to="/production/gerenPrioridade">
+              <i className="icon icon-orders" />
+              Gerenciamento de Prioridades
+            </Link>
+          </Menu.Item>
           {/* <Menu.Item key="noteProd">
             <Link to="/production/noteProd">
               <i className="icon icon-orders"/>

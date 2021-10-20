@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiCors = axios.create({
-	baseURL: `http://localhost:1338/`,
+	baseURL: `http://192.168.15.117:8080/http://192.168.15.117:3333/`,
   //baseURL: `http://localhost:1337/`,
   // baseURL: `http://192.168.0.3:1337/`,
    //https://cors-anywhere.herokuapp.com
